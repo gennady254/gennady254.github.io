@@ -28,8 +28,6 @@
         var myObstacles = [];
         var myScore;
 
-        canvas.addEventListener("touchstart", function (e) { accelerate(0.05) }); //Начало касания
-
         function startGame() {
             myGamePiece = new component(30, 30, "red", 10, 120);
             myGamePiece.gravity = 0.05;
@@ -142,6 +140,9 @@
         function accelerate(n) {
             myGamePiece.gravity = n;
         }
+
+        canvas.addEventListener("touchstart", function (e) { accelerate(0.05) }); //Начало касания
+        
     </script>
 </body>
 
