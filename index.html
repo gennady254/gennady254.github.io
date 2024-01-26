@@ -22,7 +22,7 @@
 
     <p>Use the ACCELERATE button to stay in the air</p>
     <p>How long can you stay alive?</p>
-    
+
     <script>
         var myGamePiece;
         var myObstacles = [];
@@ -141,8 +141,16 @@
             myGamePiece.gravity = n;
         }
 
-        canvas.addEventListener("touchstart", function (e) { accelerate(0.05) }); //Начало касания
-        
+        canwas.addEventListener("touchstart", () => {
+            accelerate(-0.2)
+            console.log('click')
+        });
+
+        canwas.addEventListener("touchend", () => {
+            accelerate(0.05)
+            console.log('click')
+        });
+
     </script>
 </body>
 
