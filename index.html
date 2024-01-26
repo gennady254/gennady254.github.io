@@ -40,8 +40,8 @@
         var myGameArea = {
             canvas: canwas,
             start: function () {
-                this.canvas.width = 480;
-                this.canvas.height = 270;
+                this.canvas.width = document.documentElement.scrollWidth;
+                this.canvas.height = document.documentElement.scrollHeight - (document.documentElement.scrollHeight / 100 * 10);
                 this.context = this.canvas.getContext("2d");
                 document.body.insertBefore(this.canvas, document.body.childNodes[0]);
                 this.frameNo = 0;
@@ -51,6 +51,7 @@
                 this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
             }
         }
+
 
         function component(width, height, color, x, y, type) {
             this.type = type;
@@ -75,10 +76,16 @@
                 }
             }
             this.newPos = function () {
-                this.gravitySpeed += this.gravity;
-                this.x += this.speedX;
-                this.y += this.speedY + this.gravitySpeed;
-                this.hitBottom();
+                if (this.y > 0) {
+                    this.gravitySpeed += this.gravity;
+                    this.x += this.speedX;
+                    this.y += this.speedY + this.gravitySpeed;
+                    this.hitBottom();
+                } else {
+                    this.gravity = 0.05
+                    this.gravitySpeed = 0
+                    this.y = 1
+                }
             }
             this.hitBottom = function () {
                 var rockbottom = myGameArea.canvas.height - this.height;
@@ -132,6 +139,7 @@
             myScore.update();
             myGamePiece.newPos();
             myGamePiece.update();
+            console.log(myGamePiece.gravity)
         }
 
         function everyinterval(n) {
@@ -144,13 +152,11 @@
         }
 
         canwas.addEventListener("touchstart", () => {
-            accelerate(-0.6)
-            console.log('click')
+            accelerate(-0.2)
         });
 
         canwas.addEventListener("touchend", () => {
             accelerate(0.05)
-            console.log('click')
         });
 
     </script>
