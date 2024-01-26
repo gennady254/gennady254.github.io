@@ -25,8 +25,7 @@
 <body onload="startGame()">
 
     <script>
-        class Logo {
-            constructor(area) {
+        function Logo(area) {
 
                 this.area = area;
 
@@ -40,8 +39,6 @@
                     this.area.context.fillStyle = "white";
                     this.area.context.fillText("My Game", 10, 40);
                 })
-
-            }
         }
 
         var myGamePiece;
